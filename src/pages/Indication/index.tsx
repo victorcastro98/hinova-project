@@ -1,5 +1,3 @@
-import React from "react";
-
 function Indication() {
   return (
     <div className="w-full ">

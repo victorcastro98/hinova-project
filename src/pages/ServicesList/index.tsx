@@ -1,5 +1,5 @@
 import React from "react";
-import Oficinas from "../../services/Oficinas";
+import Workshops from "../../components/Workshops";
 
 function ServicesList() {
   const [mouseIsIn, setMouseIsIn] = React.useState('none' as string)
@@ -67,7 +67,7 @@ function ServicesList() {
     <div className="w-full flex flex-col justify-center items-center">
       <div className="text-6xl text-blue-dark">Serviços</div>
       <div className="grid md:grid-cols-3 grid-cols-2 gap-[10px] mt-6">{mapedList}</div>
-      <Oficinas/>
+      <Workshops/>
     </div>
   );
 }

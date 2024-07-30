@@ -9,13 +9,15 @@ import ServicesList from "./pages/ServicesList";
 import Contact from "./pages/Contact";
 import Apps from "./pages/Apps";
 import Presentation from "./pages/Presentation";
+import IndicationForm from "./components/IndicationForm/Index";
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isOnTop, setIsOnTop] = React.useState(true as boolean);
   const servicesRef = React.useRef<HTMLDivElement | null>(null);
   const appRef = React.useRef<HTMLDivElement | null>(null);
   const contactRef = React.useRef<HTMLDivElement | null>(null);
-  const isLargeScreen = window.innerWidth > 768
+  const isLargeScreen = window.innerWidth > 768;
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -37,7 +39,7 @@ function App() {
       <div
         style={{ height: `${isOnTop ? "100px" : "80px"}` }}
         className="w-screen bg-white flex flex-col md:flex-row md:text-2xl text-blue-light 
-        transition-all duration-300 fixed z-50 items-center"
+        transition-all duration-300 fixed z-30 items-center"
       >
         <img
           style={{ height: `${isOnTop && isLargeScreen ? "90px" : "45px"}` }}
@@ -82,20 +84,30 @@ function App() {
         className="w-full transition-all duration-300"
         style={{ paddingTop: `${isOnTop ? "100px" : "50px"}` }}
       >
-        <Carousel images={isLargeScreen ? [img1 , img2] : [img1Mob, img2Mob]} />
+        <Carousel images={isLargeScreen ? [img1, img2] : [img1Mob, img2Mob]} />
       </div>
       <div className="w-full mt-4 ">
-        <Presentation/>
+        <Presentation />
       </div>
       <div ref={servicesRef} className="w-full mt-4 ">
-        <ServicesList/>
+        <ServicesList />
       </div>
       <div ref={appRef} className="w-full mt-4 ">
-        <Apps/>
+        <Apps />
       </div>
       <div ref={contactRef} className="w-full mt-4 ">
-        <Contact/>
+        <Contact />
       </div>
+      <div
+        onClick={() => {
+          setIsModalOpen(true);
+        }}
+        className="cursor-pointer hover:text-white text-blue-pop text-lg text-center pb-2 bg-blue-dark"
+      >
+        Quer indicar a Hinova para um amigo?
+      </div>
+
+      {isModalOpen ? <IndicationForm setIsOpen={setIsModalOpen} /> : null}
     </div>
   );
 }

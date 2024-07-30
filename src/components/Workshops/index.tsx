@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from "react";
-import { getOficinas } from "./OficinaService";
+import { getWorkshops } from "../../services/WorkshopsService";
 
-const OficinaComponent: React.FC = () => {
+const Workshops: React.FC = () => {
   const [oficinas, setOficinas] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false as boolean);
   const MOCK = [
@@ -63,10 +63,9 @@ const OficinaComponent: React.FC = () => {
     setIsLoading(true);
     const fetchOficinas = async () => {
       try {
-        const data = await getOficinas();
+        const data = await getWorkshops();
         setOficinas(data.ListaOficinas);
       } catch (error) {
-        console.error("Erro ao buscar oficinas:", error);
         setOficinas(MOCK);
       }
       setIsLoading(false);
@@ -105,4 +104,4 @@ const OficinaComponent: React.FC = () => {
   );
 };
 
-export default OficinaComponent;
+export default Workshops;

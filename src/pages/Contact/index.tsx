@@ -27,6 +27,7 @@ const Contact: React.FC = () => {
     console.log("Form Data Submitted:", formData);
   };
 
+
   return (
     <div className="w-full bg-blue-dark flex flex-col items-center">
       <h1 className="text-6xl text-blue-pop mb-3">Fale conosco</h1>
@@ -114,9 +115,7 @@ const Contact: React.FC = () => {
           </div>
         </div>
       </form>
-          <div className="cursor-pointer hover:text-white text-blue-pop text-lg m-2">
-          Quer indicar a Hinova para um amigo? 
-          </div>
+          
     </div>
   );
 };
