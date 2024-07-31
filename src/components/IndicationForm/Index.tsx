@@ -69,7 +69,7 @@ const IndicationForm: React.FC<{
     >
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col bg-blue-light text-white text-start p-6 rounded-xl gap-3"
+        className="flex flex-col bg-blue-light text-white text-start md:p-6 rounded-xl gap-3"
       >
         <div className="w-full flex justify-end">
           <div
@@ -82,7 +82,7 @@ const IndicationForm: React.FC<{
             X
           </div>
         </div>
-        <h1 className="text-xl">Formulário de Indicação de Amigo</h1>
+        <h1 className="md:text-xl">Formulário de Indicação de Amigo</h1>
         <div className="flex flex-row gap-2">
           <div>
             <div className="flex flex-col gap-2">

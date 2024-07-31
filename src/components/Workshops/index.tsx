@@ -57,17 +57,14 @@ const Workshops: React.FC = () => {
             : workShops.map((item) => (
                 <div
                   className="cursor-pointer rounded-md bg-white p-2 flex flex-col text-center
-             text-blue-pop md:w-[200px] w-[150px] h-[150px] justify-center"
+             text-blue-pop md:w-[200px] w-[120px] h-[150px] justify-center"
                 >
-                  <div className=" transition-all duration-500" style={{}}>
-                    <img
-                      className="w-[50px] object-cover rounded"
-                      src={item.Foto}
-                      alt="image"
-                    />
-                    <div className="text-xl">{item.Nome}</div>
-                    <div className="text-lg">{item.DescricaoCurta}</div>
-                  </div>
+                  <img
+                    className="object-contain bg-blue-pop w-fit p-2 rounded"
+                    src={`data:image/jpeg;base64,${item.Foto}`}
+                    alt="image"
+                  />
+                  <div className="text-md">{item.Nome}</div>
                 </div>
               ))}
         </div>
