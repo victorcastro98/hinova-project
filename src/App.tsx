@@ -86,7 +86,7 @@ function App() {
         className="w-full transition-all duration-300"
         style={{ paddingTop: `${isOnTop ? "100px" : "50px"}` }}
       >
-        <Carousel images={isLargeScreen ? [img1, img2] : [img1Mob, img2Mob]} />
+        <Carousel images={isLargeScreen ? [img1, img2] : [img1Mob, img2Mob]} links={["https://hinova.com.br/hinova-beneficios/", "https://hinova.com.br/hinova-mobile/"]} />
       </div>
       <div className="w-full mt-4 ">
         <Presentation />

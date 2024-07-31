@@ -2,9 +2,10 @@ import React, { useState } from "react";
 
 interface CarouselProps {
   images: string[];
+  links: string[];
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images }) => {
+const Carousel: React.FC<CarouselProps> = ({ images, links }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
@@ -22,11 +23,14 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
   return (
     <div className="w-full">
       <div className="overflow-hidden relative">
+        <a href={links[currentIndex]}>
         <img
           src={images[currentIndex]}
           alt="carousel image"
           className="object-cover w-full md:h-[400px] transition-transform duration-500"
         />
+        </a>
+        
       </div>
       <button
         onClick={prevSlide}

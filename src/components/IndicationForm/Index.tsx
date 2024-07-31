@@ -199,7 +199,7 @@ const IndicationForm: React.FC<{
           onClick={() => {
             handleSubmit();
           }}
-          className="bg-blue-dark rounded text-white flex justify-center text-center"
+          className="bg-blue-dark rounded text-white flex justify-center text-center cursor-pointer"
         >
           Enviar Indicação
         </div>
