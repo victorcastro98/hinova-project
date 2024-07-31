@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { postInidcation } from "../../services/IndicationService";
+import { useAlert } from "../../hooks/alertContext";
 
 const IndicationForm: React.FC<{
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ setIsOpen }) => {
+  const { showAlert } = useAlert();
   const [formData, setFormData] = useState({
     Indicacao: {
       CodigoAssociacao: 601,
@@ -22,8 +24,6 @@ const IndicationForm: React.FC<{
     Copias: [],
   });
 
-  const [mensagem, setMensagem] = useState("");
-
   const handleChange = (e: { target: { name: string; value: string } }) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -38,9 +38,27 @@ const IndicationForm: React.FC<{
   const handleSubmit = async () => {
     try {
       const response = await postInidcation(formData);
-      setMensagem(response.Sucesso || "Indicação enviada com sucesso!");
+      showAlert(response.Sucesso || "Indicação enviada com sucesso!");
+      setFormData({
+        Indicacao: {
+          CodigoAssociacao: 601,
+          DataCriacao: "",
+          CpfAssociado: "",
+          EmailAssociado: "",
+          NomeAssociado: "",
+          TelefoneAssociado: "",
+          PlacaVeiculoAssociado: "",
+          NomeAmigo: "",
+          TelefoneAmigo: "",
+          EmailAmigo: "",
+          Observacao: "",
+        },
+        Remetente: "",
+        Copias: [],
+      });
+      setIsOpen(false)
     } catch (error) {
-      setMensagem("Erro ao enviar a indicação. Tente novamente.");
+      showAlert("Erro ao enviar a indicação. Tente novamente.");
     }
   };
 
@@ -144,10 +162,9 @@ const IndicationForm: React.FC<{
                 required
               />
             </div>
-            
           </div>
           <div>
-          <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2">
               <label>Telefone do Amigo:</label>
               <input
                 className="w-full text-blue-dark"
@@ -185,7 +202,7 @@ const IndicationForm: React.FC<{
             <div className="flex flex-col gap-2 h-[40%]">
               <label>Observação:</label>
               <textarea
-              className="h-full text-blue-dark"
+                className="h-full text-blue-dark"
                 name="Observacao"
                 value={formData.Indicacao.Observacao}
                 onChange={handleChange}
@@ -193,8 +210,14 @@ const IndicationForm: React.FC<{
             </div>
           </div>
         </div>
-        <button className="bg-blue-dark rounded text-white" type="submit">Enviar Indicação</button>
-        {mensagem && <p>{mensagem}</p>}
+        <div
+          onClick={() => {
+            handleSubmit();
+          }}
+          className="bg-blue-dark rounded text-white flex justify-center text-center"
+        >
+          Enviar Indicação
+        </div>
       </form>
     </div>
   );

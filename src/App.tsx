@@ -10,6 +10,7 @@ import Contact from "./pages/Contact";
 import Apps from "./pages/Apps";
 import Presentation from "./pages/Presentation";
 import IndicationForm from "./components/IndicationForm/Index";
+import { AlertProvider } from "./hooks/alertContext";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -35,7 +36,8 @@ function App() {
   }, []);
 
   return (
-    <div className="w-full h-full bg-gradient-to-b from-background-start to-background-end flex flex-col">
+    <AlertProvider>
+      <div className="w-full h-full bg-gradient-to-b from-background-start to-background-end flex flex-col">
       <div
         style={{ height: `${isOnTop ? "100px" : "80px"}` }}
         className="w-screen bg-white flex flex-col md:flex-row md:text-2xl text-blue-light 
@@ -109,6 +111,8 @@ function App() {
 
       {isModalOpen ? <IndicationForm setIsOpen={setIsModalOpen} /> : null}
     </div>
+    </AlertProvider>
+    
   );
 }
 

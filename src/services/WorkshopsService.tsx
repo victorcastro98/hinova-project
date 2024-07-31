@@ -9,7 +9,6 @@ export const getWorkshops = async () => {
       }
     });
     const data = response.data;
-    console.log("Oficinas:", data);
     return data;
   } catch (error) {
     console.error('Erro ao buscar oficinas:', error);
