@@ -6,7 +6,7 @@ const IndicationForm: React.FC<{
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }> = ({ setIsOpen }) => {
   const { showAlert } = useAlert();
-  const [formData, setFormData] = useState({
+  const defaultIndication = {
     Indicacao: {
       CodigoAssociacao: 601,
       DataCriacao: "",
@@ -22,7 +22,8 @@ const IndicationForm: React.FC<{
     },
     Remetente: "",
     Copias: [],
-  });
+  }
+  const [formData, setFormData] = useState(defaultIndication);
 
   const handleChange = (e: { target: { name: string; value: string } }) => {
     const { name, value } = e.target;
@@ -39,23 +40,7 @@ const IndicationForm: React.FC<{
     try {
       const response = await postInidcation(formData);
       showAlert(response.Sucesso || "Indicação enviada com sucesso!");
-      setFormData({
-        Indicacao: {
-          CodigoAssociacao: 601,
-          DataCriacao: "",
-          CpfAssociado: "",
-          EmailAssociado: "",
-          NomeAssociado: "",
-          TelefoneAssociado: "",
-          PlacaVeiculoAssociado: "",
-          NomeAmigo: "",
-          TelefoneAmigo: "",
-          EmailAmigo: "",
-          Observacao: "",
-        },
-        Remetente: "",
-        Copias: [],
-      });
+      setFormData(defaultIndication);
       setIsOpen(false)
     } catch (error) {
       showAlert("Erro ao enviar a indicação. Tente novamente.");
